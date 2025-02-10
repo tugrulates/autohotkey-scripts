@@ -2,7 +2,7 @@ import { Command } from "@cliffy/command";
 import { omit } from "@std/collections/omit";
 import { expandGlob } from "@std/fs";
 import { basename, join } from "@std/path";
-import { getPackage } from "@tugrulates/internal/package";
+import { displayVersion } from "@tugrulates/internal/package";
 import { OPTIONAL_FIELDS, VARIANT_FIELDS } from "./fields.ts";
 import { copyExifToVariants, getPhoto } from "./photo.ts";
 import type { Photo } from "./types.ts";
@@ -49,11 +49,11 @@ function getWarnings(data: Photo): string[] {
 async function getCommand() {
   return new Command()
     .name("photos")
-    .version((await getPackage()).version ?? "")
+    .description("Manage photos.")
+    .version(await displayVersion())
     .example("photos", "Lists all photos under current directory.")
     .example("photos [photo] --json", "Data for a photo with all variants.")
     .example("photos [photo] --copy", "Copy EXIF data to all variants.")
-    .description("Manage photos.")
     .arguments("[photos...:file]")
     .option("--copy", "Copy the EXIF from source JPG to other variants.")
     .option("--json", "Output the EXIF information as JSON.")

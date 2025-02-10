@@ -8,12 +8,10 @@
     "./testing"
   ],
   "tasks": {
-    "build": "deno task --recursive compile",
-    "install": {
-      "command": "mkdir -p $HOME/.local/bin && cp dist/* $HOME/.local/bin",
-      "dependencies": ["build"]
-    },
+    "compile": "deno run -A internal/compile.ts",
+    "install": "deno task compile --install=$HOME/.local/bin",
     "test": "deno test -A --unstable-kv --doc **/*.ts",
+    "coverage": "deno task test --coverage && deno coverage --html",
     "lint": "deno fmt -q --check && deno lint -q && deno check -q **/*.ts",
     "doc": "deno doc --lint --html $(find . -path '**/*.ts' -type file)",
     "ok": "deno task lint && deno task doc && deno task test"
@@ -44,11 +42,18 @@
     "@cliffy/prompt": "jsr:@cliffy/prompt@1.0.0-rc.7",
     "@cliffy/table": "jsr:@cliffy/table@1.0.0-rc.7",
     "@david/which": "jsr:@david/which@^0.4.1",
+    "@octokit/rest": "npm:@octokit/rest@^21.1.0",
+    "@octokit/types": "npm:@octokit/types@^13.8.0",
     "@std/assert": "jsr:@std/assert@^1.0.11",
     "@std/async": "jsr:@std/async@^1.0.10",
+    "@std/cli": "jsr:@std/cli@^1.0.11",
     "@std/collections": "jsr:@std/collections@^1.0.10",
+    "@std/crypto": "jsr:@std/crypto@^1.0.4",
+    "@std/encoding": "jsr:@std/encoding@^1.0.7",
     "@std/fs": "jsr:@std/fs@^1.0.10",
     "@std/path": "jsr:@std/path@^1.0.8",
+    "@std/regexp": "jsr:@std/regexp@^1.0.1",
+    "@std/semver": "jsr:@std/semver@^1.0.3",
     "@std/testing": "jsr:@std/testing@^1.0.9",
     "@std/text": "jsr:@std/text@^1.0.9",
     "@urql/core": "npm:@urql/core@^5.1.0",

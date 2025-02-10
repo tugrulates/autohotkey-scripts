@@ -62,7 +62,7 @@ jobs:
         uses: denoland/setup-deno@v2
 
       - name: Build
-        run: COMPILE_ARGS="--target=${{ matrix.target }}" deno task build
+        run: deno run -A internal/compile.ts --verbose --target=${{ matrix.target }}
 
       - name: Upload
         uses: actions/upload-artifact@v4

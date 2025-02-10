@@ -2,7 +2,9 @@
   "name": "@tugrulates/500px",
   "version": "0.1.2",
   "exports": "./mod.ts",
-  "tasks": {
-    "compile": "deno compile $COMPILE_ARGS -N=api.500px.com --no-prompt --include=deno.json --include=graphql -o=../dist/ mod.ts"
+  "compile": {
+    "main": "mod.ts",
+    "include": ["graphql"],
+    "permissions": [{ "name": "net", "url": "api.500px.com" }]
   }
 }

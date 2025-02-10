@@ -1,6 +1,6 @@
 import { Command, EnumType } from "@cliffy/command";
 import { Table } from "@cliffy/table";
-import { getPackage } from "@tugrulates/internal/package";
+import { displayVersion } from "@tugrulates/internal/package";
 import { FiveHundredPxClient } from "./client.ts";
 import { CATEGORIES } from "./data.ts";
 import type { Photo } from "./types.ts";
@@ -130,7 +130,7 @@ async function getCommand() {
     .name("500px")
     .description("Interact with 500px.")
     .usage("<command> [options]")
-    .version((await getPackage()).version ?? "")
+    .version(await displayVersion())
     .action((): void => command.showHelp())
     .command("discover", getDiscoverCommand())
     .command("follows", getFollowsCommand())

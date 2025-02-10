@@ -1,6 +1,6 @@
 import { Command } from "@cliffy/command";
 import { Table } from "@cliffy/table";
-import { getPackage } from "@tugrulates/internal/package";
+import { displayVersion } from "@tugrulates/internal/package";
 import { LonelyPlanetClient } from "./client.ts";
 import { EMOJIS } from "./data.ts";
 import type { Attraction, Destination } from "./types.ts";
@@ -16,7 +16,7 @@ async function getCommand() {
   return new Command()
     .name("lonely-planet")
     .description("Explores data from Lonely Planet.")
-    .version((await getPackage()).version ?? "")
+    .version(await displayVersion())
     .example("lonely-planet big sur", "Search destinations for 'big sur'.")
     .example("lonely-planet --attractions amsterdam", "Search attractions.")
     .example("lonely-planet --stories amsterdam", "Search stories.")
