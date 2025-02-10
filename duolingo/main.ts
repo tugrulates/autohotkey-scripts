@@ -3,7 +3,7 @@ import { Input, Secret } from "@cliffy/prompt";
 import { Table } from "@cliffy/table";
 import { pool } from "@tugrulates/internal/async";
 import { Config } from "@tugrulates/internal/config";
-import { getPackage } from "@tugrulates/internal/package";
+import { displayVersion } from "@tugrulates/internal/package";
 import { DuolingoClient } from "./client.ts";
 import { LEAGUES } from "./data.ts";
 import {
@@ -196,7 +196,7 @@ async function getCommand(config: Config<DuolingoConfig>) {
     .name("duolingo")
     .description("Interact with Duolingo.")
     .usage("--username <username> --token <token> <command> [options]")
-    .version((await getPackage()).version ?? "")
+    .version(await displayVersion())
     .example("duolingo --username <username> --token <token>", "Configure.")
     .example("duolingo --clear", "Clear the cached configuration.")
     .option("--clear", "Clear the cached configuration.", {
