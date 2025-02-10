@@ -497,7 +497,7 @@ async function main(args: string[]) {
     )
     .action(
       async (
-        { commit, changelog, bump, release, target, actor, email, token },
+        { commit, changelog, bump, release, actor, email, token },
         ...directories
       ) => {
         if (directories.length === 0) directories = ["."];
